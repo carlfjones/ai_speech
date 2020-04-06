@@ -19,6 +19,16 @@ recognition.addEventListener("result", (e) => {
     if (e.results[0].isFinal) {
         p = document.createElement("p");
         p.textContent = transcript;
+        if (transcript.includes("what is the time")) {
+            t = getTime();
+            let answer = document.createElement("answer")
+            transcript_element.appendChild(answer);
+            answer.textContent = t;
+            console.log(t);
+            p.textContent = transcript;
+        ;
+            
+        }
         transcript_element.appendChild(p)
         p.textContent = "";
     }
@@ -39,3 +49,8 @@ end_button.addEventListener("click", () => {
 
 });
 
+
+function getTime() {
+    const time = new Date(Date.now());
+    return `the time is ${time.toLocaleString('en-UK', { hour: 'numeric', minute: 'numeric', hour12: true })}`
+};

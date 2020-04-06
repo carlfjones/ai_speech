@@ -31,6 +31,10 @@ body {
   color: #F3F3F3;
 }
 
+.wrapper #transcript answer {
+  color: #F3F3F3;
+}
+
 .wrapper #transcript .command {
   color: #FFCE00;
 }
