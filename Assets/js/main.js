@@ -6,6 +6,8 @@ const transcript_element = document.getElementById("transcript");
 const talk_button = document.getElementById("start")
 const end_button = document.getElementById("end")
 
+const synth = window.speechSynthesis;
+
 let p = document.createElement("p");
 transcript_element.appendChild(p);
 
@@ -25,6 +27,7 @@ recognition.addEventListener("result", (e) => {
             transcript_element.appendChild(answer);
             answer.textContent = t;
             console.log(t);
+            speak(t);
             p.textContent = transcript;
         ;
             
@@ -53,4 +56,9 @@ end_button.addEventListener("click", () => {
 function getTime() {
     const time = new Date(Date.now());
     return `the time is ${time.toLocaleString('en-UK', { hour: 'numeric', minute: 'numeric', hour12: true })}`
+};
+
+const speak = (action) => {
+    utterThis = new SpeechSynthesisUtterance(action);
+    synth.speak(utterThis);
 };
