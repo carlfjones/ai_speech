@@ -8,6 +8,7 @@ const end_button = document.getElementById("end")
 
 const synth = window.speechSynthesis;
 
+
 let p = document.createElement("p");
 transcript_element.appendChild(p);
 
@@ -51,50 +52,38 @@ function getTime() {
     return `the time is ${time.toLocaleString('en-UK', { hour: 'numeric', minute: 'numeric', hour12: true })}`
 };
 
-const speak = (action) => {
-    utterThis = new SpeechSynthesisUtterance(action);
-    synth.speak(utterThis);
-};
 
 const getJoke = () => {
-    return fetch(`https://sv443.net/jokeapi/v2/joke/Any?blacklistFlags=nsfw,religious,political,racist,sexist&type=twopart`)
+    return fetch(`https://sv443.net/jokeapi/v2/joke/Programming,Miscellaneous?blacklistFlags=nsfw,religious,political,racist,sexist&type=twopart`)
     .then(response => response.json())
     .then(jokes => { console.log(jokes);
         console.log(jokes.type);
-        
-
         if (jokes.type == "twopart") {
         var setup = jokes.setup;
         var delivery = jokes.delivery;
         console.log(setup);
         
-
-        let jokesetup = document.createElement("jokesetup");  
+        let jokesetup = document.createElement("jokesetup");
         transcript_element.appendChild(jokesetup);
         jokesetup.textContent = setup;
+        br(jokesetup);
         speak(setup);
 
-    setTimeout( function () {
+        setTimeout (function() {
         
-        let jokedelivery = document.createElement("jokedelivery");  
+        let jokedelivery = document.createElement("jokedelivery");
         transcript_element.appendChild(jokedelivery);
         jokedelivery.textContent = delivery;
         speak(delivery);
-
-    }, 3000);
-
-        } else {
-            var jokeline = jokes.joke;
-            let joke = document.createElement("joke");
-            joke.textContent = jokeline;
-
+        }, 4000);
         }
+        })
+    };
 
-
-
-    })
-};
-
+    const speak = (action) => {
+        utterThis = new SpeechSynthesisUtterance(action);
+        synth.speak(utterThis);
+    };
 
 async function tellTime(transcript) {
     if (transcript.includes("what is the time")) {
@@ -104,17 +93,17 @@ async function tellTime(transcript) {
         answer.textContent = t;
         console.log(t);
         speak(t);
-        p.textContent = transcript;
+
     }
 }
 
-async function tellJoke(transcript) {
+function tellJoke(transcript) {
     if (transcript.includes("tell me a joke")) {
-        j = getJoke();
-        let joke = document.createElement("joke");
-        transcript_element.appendChild(joke);
-        joke.textContent = j;
-        
+        getJoke();
     }
 }
 
+function br(element) {
+    var br = document.createElement("br");
+    element.appendChild(br);
+}
