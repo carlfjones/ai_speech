@@ -25,8 +25,11 @@ recognition.addEventListener("result", (e) => {
         p.textContent = transcript;
         tellTime(transcript);
         tellJoke(transcript);
+        
+        
         transcript_element.appendChild(p)
         p.textContent = "";
+        
     }
     
 });
@@ -53,29 +56,15 @@ function getTime() {
 };
 
 
-const getJoke = () => {
+async function getJoke() {
     return fetch(`https://sv443.net/jokeapi/v2/joke/Programming,Miscellaneous?blacklistFlags=nsfw,religious,political,racist,sexist&type=twopart`)
     .then(response => response.json())
     .then(jokes => { console.log(jokes);
         console.log(jokes.type);
         if (jokes.type == "twopart") {
-        var setup = jokes.setup;
-        var delivery = jokes.delivery;
-        console.log(setup);
-        
-        let jokesetup = document.createElement("jokesetup");
-        transcript_element.appendChild(jokesetup);
-        jokesetup.textContent = setup;
-        br(jokesetup);
-        speak(setup);
-
-        setTimeout (function() {
-        
-        let jokedelivery = document.createElement("jokedelivery");
-        transcript_element.appendChild(jokedelivery);
-        jokedelivery.textContent = delivery;
-        speak(delivery);
-        }, 4000);
+            var setup = jokes.setup;
+            var delivery = jokes.delivery;
+       return [setup, delivery];
         }
         })
     };
@@ -85,7 +74,7 @@ const getJoke = () => {
         synth.speak(utterThis);
     };
 
-async function tellTime(transcript) {
+function tellTime(transcript) {
     if (transcript.includes("what is the time")) {
         t = getTime();
         let answer = document.createElement("answer");
@@ -97,9 +86,25 @@ async function tellTime(transcript) {
     }
 }
 
-function tellJoke(transcript) {
+async function tellJoke(transcript) {
     if (transcript.includes("tell me a joke")) {
-        getJoke();
+        var joke = await getJoke();
+        var setup = joke[0]
+        var delivery = joke[1]
+
+        let jokesetup = document.createElement("jokesetup");
+        jokesetup.textContent = setup;
+        transcript_element.appendChild(jokesetup);
+        br(jokesetup);
+        speak(setup);
+
+                setTimeout (function() {
+        
+            let jokedelivery = document.createElement("jokedelivery");
+            transcript_element.appendChild(jokedelivery);
+            jokedelivery.textContent = delivery;
+             speak(delivery);
+        }, 4000);
     }
 }
 
