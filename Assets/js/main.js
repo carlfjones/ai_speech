@@ -23,7 +23,7 @@ recognition.addEventListener("result", (e) => {
         p = document.createElement("p");
         p.textContent = transcript;
         tellTime(transcript);
-        getJoke(transcript);
+        tellJoke(transcript);
         transcript_element.appendChild(p)
         p.textContent = "";
     }
@@ -57,16 +57,15 @@ const speak = (action) => {
 };
 
 const getJoke = () => {
-    return fetch(`https://sv443.net/jokeapi/v2/joke/Any`)
+    return fetch(`https://sv443.net/jokeapi/v2/joke/Any?blacklistFlags=nsfw,religious,political,racist,sexist&type=twopart`)
     .then(response => response.json())
     .then(jokes => { console.log(jokes);
         console.log(jokes.type);
         
-    
 
         if (jokes.type == "twopart") {
         var setup = jokes.setup;
-        var punchline = jokes.delivery;
+        var delivery = jokes.delivery;
         console.log(setup);
         
 
@@ -75,14 +74,14 @@ const getJoke = () => {
         jokesetup.textContent = setup;
         speak(setup);
 
-        setTimeout( function () {
+    setTimeout( function () {
         
-        let jokepunch = document.createElement("jokepunch");  
-        transcript_element.appendChild(jokepunch);
-        jokepunch.textContent = punchline;
-        speak(punchline);
+        let jokedelivery = document.createElement("jokedelivery");  
+        transcript_element.appendChild(jokedelivery);
+        jokedelivery.textContent = delivery;
+        speak(delivery);
 
-    }, 5000);
+    }, 3000);
 
         } else {
             var jokeline = jokes.joke;
@@ -109,13 +108,13 @@ async function tellTime(transcript) {
     }
 }
 
-// async function tellJoke(transcript) {
-//     if (transcript.includes("tell me a joke")) {
-//         j = getJoke();
-//         let joke = document.createElement("joke");
-//         transcript_element.appendChild(joke);
-//         joke.textContent = j;
+async function tellJoke(transcript) {
+    if (transcript.includes("tell me a joke")) {
+        j = getJoke();
+        let joke = document.createElement("joke");
+        transcript_element.appendChild(joke);
+        joke.textContent = j;
         
-//     }
-// }
+    }
+}
 
