@@ -25,10 +25,11 @@ recognition.addEventListener("result", (e) => {
         p.textContent = transcript;
         tellTime(transcript);
         tellJoke(transcript);
-        
-        
+
+        setTimeout (function() {
         transcript_element.appendChild(p)
         p.textContent = "";
+    }, 5000);
         
     }
     
@@ -93,17 +94,19 @@ async function tellJoke(transcript) {
         var delivery = joke[1]
 
         let jokesetup = document.createElement("jokesetup");
-        jokesetup.textContent = setup;
         transcript_element.appendChild(jokesetup);
+        jokesetup.textContent = setup;
+        console.log(setup);
+        
         br(jokesetup);
         speak(setup);
 
-                setTimeout (function() {
+        setTimeout (function() {
         
-            let jokedelivery = document.createElement("jokedelivery");
-            transcript_element.appendChild(jokedelivery);
-            jokedelivery.textContent = delivery;
-             speak(delivery);
+        let jokedelivery = document.createElement("jokedelivery");
+        transcript_element.appendChild(jokedelivery);
+        jokedelivery.textContent = delivery;
+        speak(delivery);
         }, 4000);
     }
 }
@@ -112,3 +115,4 @@ function br(element) {
     var br = document.createElement("br");
     element.appendChild(br);
 }
+
