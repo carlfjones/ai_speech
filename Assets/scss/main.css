@@ -42,4 +42,9 @@ body {
 .wrapper #transcript jokedelivery {
   color: #F3F3F3;
 }
+
+.wrapper #transcript img {
+  text-align: center;
+  max-width: 300px;
+}
 /*# sourceMappingURL=main.css.map */
