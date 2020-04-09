@@ -30,11 +30,15 @@ recognition.addEventListener("result", (e) => {
         transcript_element.appendChild(p)
         p.textContent = "";
     }, 5000);
-        
+
     }
     
 });
 
+recognition.addEventListener("end", () => {
+    end_button.disabled = true;
+    talk_button.disabled = false;
+})
 
 talk_button.addEventListener("click", () => {
     end_button.disabled = false;
@@ -115,4 +119,3 @@ function br(element) {
     var br = document.createElement("br");
     element.appendChild(br);
 }
-
