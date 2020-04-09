@@ -16,21 +16,15 @@ transcript_element.appendChild(p);
 recognition.addEventListener("result", (e) => {
     const transcript = Array.from(e.results)
     .map(result => result[0])
-    .map(result => result.transcript);
+    .map(result => result.transcript)
+    .join("");
     console.log(transcript);
 
     p.textContent = transcript;
     if (e.results[0].isFinal) {
         p = document.createElement("p");
         p.textContent = transcript;
-        tellTime(transcript);
-        tellJoke(transcript);
-
-        setTimeout (function() {
-        transcript_element.appendChild(p)
-        p.textContent = "";
-    }, 5000);
-
+        apiCalls(transcript);
     }
     
 });
@@ -98,8 +92,8 @@ async function tellJoke(transcript) {
         var delivery = joke[1]
 
         let jokesetup = document.createElement("jokesetup");
-        transcript_element.appendChild(jokesetup);
         jokesetup.textContent = setup;
+        transcript_element.appendChild(jokesetup);
         console.log(setup);
         
         br(jokesetup);
@@ -108,8 +102,8 @@ async function tellJoke(transcript) {
         setTimeout (function() {
         
         let jokedelivery = document.createElement("jokedelivery");
-        transcript_element.appendChild(jokedelivery);
         jokedelivery.textContent = delivery;
+        transcript_element.appendChild(jokedelivery);
         speak(delivery);
         }, 4000);
     }
@@ -119,3 +113,12 @@ function br(element) {
     var br = document.createElement("br");
     element.appendChild(br);
 }
+
+
+
+async function apiCalls(transcript){
+    await tellTime(transcript);
+    await tellJoke(transcript);
+    transcript_element.appendChild(p)
+    p.textContent = "";
+};
