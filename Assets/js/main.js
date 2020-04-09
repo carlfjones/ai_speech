@@ -24,12 +24,8 @@ recognition.addEventListener("result", (e) => {
     if (e.results[0].isFinal) {
         p = document.createElement("p");
         p.textContent = transcript;
-        test(transcript);
-        
-        // setTimeout (function() {
-        
-    // }, 5000);
-
+        apiCalls(transcript);
+        getCat();
     }
     
 });
@@ -73,6 +69,22 @@ async function getJoke() {
         })
     };
 
+
+
+    function getCat() {
+
+        const url = `https://api.thecatapi.com/v1/images/search`;
+        
+        return fetch(url)
+        .then(response => response.json())
+        .then(cats => { console.log(cats);
+            console.log(cats[0].url);
+            img = document.createElement(`img`)
+            img.src = cats[0].url;
+            transcript_element.appendChild(img)
+        });
+    }
+
     const speak = (action) => {
         utterThis = new SpeechSynthesisUtterance(action);
         synth.speak(utterThis);
@@ -105,7 +117,7 @@ async function tellJoke(transcript) {
         speak(setup);
 
         // setTimeout(function () {
-            const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
+            const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
             await delay(4000);
             let jokedelivery = document.createElement("jokedelivery");
             jokedelivery.textContent = delivery;
@@ -115,6 +127,10 @@ async function tellJoke(transcript) {
     }
 }
 
+function tellCat(transcript) {
+
+};
+
 function br(element) {
     var br = document.createElement("br");
     element.appendChild(br);
@@ -122,9 +138,10 @@ function br(element) {
 
 
 
-async function test(transcript){
+async function apiCalls(transcript){
     tellTime(transcript);
     await tellJoke(transcript);
+    tellCat(transcript);
     transcript_element.appendChild(p)
     p.textContent = "";
 };
