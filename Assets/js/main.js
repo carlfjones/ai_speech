@@ -24,7 +24,12 @@ recognition.addEventListener("result", (e) => {
     if (e.results[0].isFinal) {
         p = document.createElement("p");
         p.textContent = transcript;
-        apiCalls(transcript);
+        test(transcript);
+        
+        // setTimeout (function() {
+        
+    // }, 5000);
+
     }
     
 });
@@ -99,13 +104,14 @@ async function tellJoke(transcript) {
         br(jokesetup);
         speak(setup);
 
-        setTimeout (function() {
-        
-        let jokedelivery = document.createElement("jokedelivery");
-        jokedelivery.textContent = delivery;
-        transcript_element.appendChild(jokedelivery);
-        speak(delivery);
-        }, 4000);
+        // setTimeout(function () {
+            const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
+            await delay(4000);
+            let jokedelivery = document.createElement("jokedelivery");
+            jokedelivery.textContent = delivery;
+            transcript_element.appendChild(jokedelivery);
+            speak(delivery);
+        // }, 4000);
     }
 }
 
@@ -116,8 +122,8 @@ function br(element) {
 
 
 
-async function apiCalls(transcript){
-    await tellTime(transcript);
+async function test(transcript){
+    tellTime(transcript);
     await tellJoke(transcript);
     transcript_element.appendChild(p)
     p.textContent = "";
