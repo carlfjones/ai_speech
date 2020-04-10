@@ -85,14 +85,19 @@ async function getJoke() {
 
     function getQuote(){
         var randnum =  Math.floor(Math.random() * 1600)
+        
          fetch("https://type.fit/api/quotes")
          .then(response => response.json())
          .then(quote => {
-            //  if (quote[randnum].text.length => 150) {
-
-            //  };
-            // if quote[randnum]
-            console.log(quote[randnum].text.length);
+            if (quote[randnum].text.length < 150) {
+                var motQuote = quote[randnum];
+                
+                console.log(motQuote.text);
+                
+                return motQuote
+            } else {
+                getQuote();
+                }
          });
     }
 
