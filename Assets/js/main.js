@@ -26,6 +26,7 @@ recognition.addEventListener("result", (e) => {
         p.textContent = transcript;
         apiCalls(transcript);
         getCat();
+        getQuote();
     }
     
 });
@@ -70,11 +71,8 @@ async function getJoke() {
     };
 
 
-
     function getCat() {
-
         const url = `https://api.thecatapi.com/v1/images/search`;
-        
         return fetch(url)
         .then(response => response.json())
         .then(cats => { console.log(cats);
@@ -83,6 +81,19 @@ async function getJoke() {
             img.src = cats[0].url;
             transcript_element.appendChild(img)
         });
+    }
+
+    function getQuote(){
+        var randnum =  Math.floor(Math.random() * 1600)
+         fetch("https://type.fit/api/quotes")
+         .then(response => response.json())
+         .then(quote => {
+            //  if (quote[randnum].text.length => 150) {
+
+            //  };
+            // if quote[randnum]
+            console.log(quote[randnum].text.length);
+         });
     }
 
     const speak = (action) => {
