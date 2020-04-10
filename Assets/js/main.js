@@ -25,8 +25,7 @@ recognition.addEventListener("result", (e) => {
         p = document.createElement("p");
         p.textContent = transcript;
         apiCalls(transcript);
-        getCat();
-        getQuote();
+        getMotCat();
     }
     
 });
@@ -143,7 +142,9 @@ async function tellJoke(transcript) {
     }
 }
 
-function tellCat(transcript) {
+function getMotCat() {
+    getCat();
+    getQuote();
 
 };
 
@@ -157,7 +158,6 @@ function br(element) {
 async function apiCalls(transcript){
     tellTime(transcript);
     await tellJoke(transcript);
-    tellCat(transcript);
     transcript_element.appendChild(p)
     p.textContent = "";
 };
