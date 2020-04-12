@@ -67,38 +67,38 @@ async function getJoke() {
        return [setup, delivery];
         }
         })
-    };
+};
 
 
-    function getCat() {
+function getCat() {
         const url = `https://api.thecatapi.com/v1/images/search`;
         return fetch(url)
         .then(response => response.json())
         .then(cats => { console.log(cats);
             console.log(cats[0].url);
-            img = document.createElement(`img`)
-            img.src = cats[0].url;
-            transcript_element.appendChild(img)
+            catImg = cats[0].url;
+            return catImg;
         });
-    }
+};
 
-    function getQuote(){
+function getQuote(){
         var randnum =  Math.floor(Math.random() * 1600)
         
          fetch("https://type.fit/api/quotes")
          .then(response => response.json())
          .then(quote => {
-            if (quote[randnum].text.length < 150) {
+            if (quote[randnum].text.length < git a50) {
                 var motQuote = quote[randnum];
                 
                 console.log(motQuote.text);
+                var motQuoteText = motQuote.text;
                 
-                return motQuote
+                return motQuoteText;
             } else {
                 getQuote();
-                }
+            }   
          });
-    }
+};
 
     const speak = (action) => {
         utterThis = new SpeechSynthesisUtterance(action);
@@ -142,10 +142,20 @@ async function tellJoke(transcript) {
     }
 }
 
-function getMotCat() {
-    getCat();
-    getQuote();
 
+async function getMotCat() {
+    var catImg = await getCat();
+    img = document.createElement(`img`)
+            img.src = catImg;
+            transcript_element.appendChild(img);
+            
+
+    var q = getQuote();
+    console.log(q);
+    
+    var quote = document.createElement(`p`)
+    quote.textContent = q;
+    img.appendChild(q);
 };
 
 function br(element) {
