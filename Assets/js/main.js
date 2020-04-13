@@ -84,21 +84,22 @@ function getCat() {
 function getQuote(){
         var randnum =  Math.floor(Math.random() * 1600)
         
-         fetch("https://type.fit/api/quotes")
+         return fetch(`https://type.fit/api/quotes`)
          .then(response => response.json())
          .then(quote => {
-            if (quote[randnum].text.length < git a50) {
+            if (quote[randnum].text.length < 50) {
                 var motQuote = quote[randnum];
                 
                 console.log(motQuote.text);
-                var motQuoteText = motQuote.text;
-                
+                let motQuoteText = motQuote.text;
                 return motQuoteText;
             } else {
-                getQuote();
-            }   
+                return getQuote();
+            };
          });
 };
+
+
 
     const speak = (action) => {
         utterThis = new SpeechSynthesisUtterance(action);
@@ -116,6 +117,7 @@ function tellTime(transcript) {
 
     }
 }
+
 
 async function tellJoke(transcript) {
     if (transcript.includes("tell me a joke")) {
@@ -150,12 +152,12 @@ async function getMotCat() {
             transcript_element.appendChild(img);
             
 
-    var q = getQuote();
+    var q = await getQuote();
     console.log(q);
     
     var quote = document.createElement(`p`)
     quote.textContent = q;
-    img.appendChild(q);
+    img.appendChild(quote);
 };
 
 function br(element) {
