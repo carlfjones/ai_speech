@@ -149,20 +149,22 @@ async function getMotCat() {
     var catImg = await getCat();
     img = document.createElement(`img`)
             img.src = catImg;
-            transcript_element.appendChild(img);
-            
+            transcript_element.appendChild(img); 
 
-    var q = await getQuote();
+    var q =  await getQuote();
     console.log(q);
     
-    var quote = document.createElement(`p`)
-    quote.textContent = q;
-    img.appendChild(quote);
+    var quote = document.createElement(`quote`)
+    quote.textContent = `"${q}"`;
+    br();
+    transcript_element.appendChild(quote);
+    console.log(quote);
+ 
 };
 
 function br(element) {
     var br = document.createElement("br");
-    element.appendChild(br);
+    transcript_element.appendChild(br);
 }
 
 

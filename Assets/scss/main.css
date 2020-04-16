@@ -43,6 +43,10 @@ body {
   color: #F3F3F3;
 }
 
+.wrapper #transcript quote {
+  color: #F3F3F3;
+}
+
 .wrapper #transcript img {
   text-align: center;
   max-width: 300px;
