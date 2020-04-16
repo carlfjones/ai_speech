@@ -156,7 +156,7 @@ async function getMotCat() {
     
     var quote = document.createElement(`quote`)
     quote.textContent = `"${q}"`;
-    br
+    br();
     transcript_element.appendChild(quote);
     console.log(quote);
  
