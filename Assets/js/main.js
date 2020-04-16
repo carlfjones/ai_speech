@@ -38,6 +38,7 @@ recognition.addEventListener("end", () => {
 talk_button.addEventListener("click", () => {
     end_button.disabled = false;
     talk_button.disabled = true;
+    talk_button
     recognition.start()
 });
 
