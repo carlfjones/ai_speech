@@ -25,7 +25,6 @@ recognition.addEventListener("result", (e) => {
         p = document.createElement("p");
         p.textContent = transcript;
         apiCalls(transcript);
-        getMotCat();
     }
     
 });
@@ -145,7 +144,10 @@ async function tellJoke(transcript) {
 }
 
 
-async function getMotCat() {
+async function getMotCat(transcript) {
+
+    if (transcript.includes("I love cats")) {
+
     var catImg = await getCat();
     img = document.createElement(`img`)
             img.src = catImg;
@@ -159,6 +161,7 @@ async function getMotCat() {
     br();
     transcript_element.appendChild(quote);
     console.log(quote);
+    }
  
 };
 
@@ -172,6 +175,7 @@ function br(element) {
 async function apiCalls(transcript){
     tellTime(transcript);
     await tellJoke(transcript);
+    await getMotCat(transcript);
     transcript_element.appendChild(p)
     p.textContent = "";
 };
