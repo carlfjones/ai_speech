@@ -1,6 +1,7 @@
 body {
   background: #F3F3F3;
   margin: 0;
+  text-align: center;
 }
 
 .wrapper {
@@ -57,24 +58,26 @@ body {
 }
 
 .example_a {
-  color: #fff !important;
-  text-transform: uppercase;
-  text-decoration: none;
-  background: #ed3330;
-  padding: 20px;
-  border-radius: 5px;
-  display: inline-block;
   border: none;
-  -webkit-transition: all 0.4s ease 0s;
-  transition: all 0.4s ease 0s;
+  background: #afafaf;
+  color: #ffffff !important;
+  font-weight: 100;
+  padding: 20px;
+  text-transform: uppercase;
+  border-radius: 6px;
+  display: inline-block;
+  -webkit-transition: all 0.3s ease 0s;
+  transition: all 0.3s ease 0s;
 }
 
 .example_a:hover {
-  background: #434343;
-  letter-spacing: 1px;
+  color: #404040 !important;
+  font-weight: 700 !important;
+  letter-spacing: 3px;
+  background: none;
   -webkit-box-shadow: 0px 5px 40px -10px rgba(0, 0, 0, 0.57);
-  box-shadow: 5px 40px -10px rgba(0, 0, 0, 0.57);
-  -webkit-transition: all 0.4s ease 0s;
-  transition: all 0.4s ease 0s;
+  -moz-box-shadow: 0px 5px 40px -10px rgba(0, 0, 0, 0.57);
+  -webkit-transition: all 0.3s ease 0s;
+  transition: all 0.3s ease 0s;
 }
 /*# sourceMappingURL=main.css.map */

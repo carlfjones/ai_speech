@@ -31,24 +31,23 @@ recognition.addEventListener("result", (e) => {
 });
 
 recognition.addEventListener("end", () => {
-    end_button.disabled = true;
+    // end_button.disabled = true;
     talk_button.disabled = false;
 })
 
 talk_button.addEventListener("click", () => {
-    end_button.disabled = false;
+    // end_button.disabled = false;
     talk_button.disabled = true;
-    talk_button
     recognition.start()
 });
 
 
-end_button.addEventListener("click", () => {
-    end_button.disabled = true;
-    talk_button.disabled = false;
-    recognition.stop()
+// end_button.addEventListener("click", () => {
+    // end_button.disabled = true;
+    // talk_button.disabled = false;
+    // recognition.stop()
 
-});
+// });
 
 
 function getTime() {
@@ -157,7 +156,7 @@ async function getMotCat() {
     
     var quote = document.createElement(`quote`)
     quote.textContent = `"${q}"`;
-    br();
+    br
     transcript_element.appendChild(quote);
     console.log(quote);
  
