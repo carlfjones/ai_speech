@@ -5,6 +5,11 @@ body {
 	text-align: center;
 }
 
+.intro {
+	padding: 30px;
+	color: #000000;
+}
+
 .wrapper {
 	display: flex;
 	flex-direction: column;
@@ -14,12 +19,16 @@ body {
 
 	padding: 25px;
 	
+
+
 	#transcript {
+		border-radius: 20px;
+		text-align: left;
 		font-family: 'Nunito', sans-serif;
 		margin-top: 15px;
 		background: #171717;
 		padding: 15px;
-		min-height: 500px;
+		min-height: 100px;
 		overflow: scroll;
 
 		p {
