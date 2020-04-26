@@ -11,7 +11,7 @@
 ![Image of Time](https://github.com/carlfjones/ai_speech/blob/master/Readme%20pics/Time.png)<br>
 
 <p> Randomly generated joke function: </p><br>
-![Image of Time](https://github.com/carlfjones/ai_speech/blob/master/Readme%20pics/Joke.png)<br>
+![Image of Joke](https://github.com/carlfjones/ai_speech/blob/master/Readme%20pics/Joke.png)<br>
 
 <p> Randomly generated cat advice function: </p><br>
-![Image of Time](https://github.com/carlfjones/ai_speech/blob/master/Readme%20pics/Cat.png)<br>
+![Image of Cat](https://github.com/carlfjones/ai_speech/blob/master/Readme%20pics/Cat.png)<br>
