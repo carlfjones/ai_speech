@@ -146,7 +146,7 @@ async function tellJoke(transcript) {
 
 async function getMotCat(transcript) {
 
-    if (transcript.includes("I love cats")) {
+    if (transcript.includes("advice" && "cat")) {
 
     var catImg = await getCat();
     img = document.createElement(`img`)
