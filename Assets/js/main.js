@@ -161,6 +161,7 @@ async function getMotCat(transcript) {
     br();
     transcript_element.appendChild(quote);
     console.log(quote);
+    speak(q)
     }
  
 };
